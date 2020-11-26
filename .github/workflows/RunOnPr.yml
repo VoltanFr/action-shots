@@ -14,5 +14,5 @@ jobs:
     - name: "Show GITHUB_REF"
       run: echo ${env:GITHUB_REF}
 
-    - name: "Show a secret: it is not readable, we get an empty string"
+    - name: "Show a secret: it is not readable if the user is not the repo owner, we get an empty string"
       run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}"      
