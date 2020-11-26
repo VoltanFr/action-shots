@@ -3,7 +3,7 @@ name: "Demo workflow, runs on push to main branch"
 on:
   push:
     branches:    
-      - main
+      - master
 
 jobs:
   singlejob:
