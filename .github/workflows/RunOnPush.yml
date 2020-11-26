@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: "Show GITHUB_REF"
-      run: echo ${{GITHUB_REF}}
+      run: echo ${{env:GITHUB_REF}}
 
     - name: "Show a secret correctly: it gets redacted"
       run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}"      
