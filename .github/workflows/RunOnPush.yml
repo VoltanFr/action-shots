@@ -1,6 +1,6 @@
 name: "Demo workflow, runs on push"
 
-on: [push, pull_request]:
+on: [push, pull_request]
 
 jobs:
   singlejob:
