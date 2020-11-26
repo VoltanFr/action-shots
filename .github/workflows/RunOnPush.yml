@@ -16,3 +16,6 @@ jobs:
 
     - name: "Show the directory tree"
       run: tree /F /A
+
+    - name: "Show a secret"
+      run: echo ${{secrets.NOT_TOO_CONFIDENTIAL}}
