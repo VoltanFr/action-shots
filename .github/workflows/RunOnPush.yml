@@ -20,10 +20,10 @@ jobs:
     - name: "Show a secret correctly: it gets redacted"
       run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}"      
 
+    - name: "Show a secret uppercased: it gets redacted"
+      run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}".ToUpper()      
+      
     - name: "Show a secret with an error in the script: a mean to have it shown in the GUI"
       # Here I forget to use quotes
       # This will make the action fail because there is a quote in the secret string
       run: echo ${{secrets.NOT_TOO_CONFIDENTIAL}}
-
-    - name: "Show a secret uppercased: it gets redacted"
-      run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}".ToUpper()      
