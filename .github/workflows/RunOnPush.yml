@@ -17,5 +17,9 @@ jobs:
     - name: "Show the directory tree"
       run: tree /F /A
 
-    - name: "Show a secret"
+    - name: "Show a secret correctly: it gets redacted"
       run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}"      
+
+    - name: "Show a secret with an error in the script: a mean to have it shown in the GUI"
+      # Here I forget to use quotes
+      run: echo ${{secrets.NOT_TOO_CONFIDENTIAL}}
