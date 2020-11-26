@@ -1,10 +1,13 @@
-name: "Demo workflow, runs on push"
+name: "Demo workflow, runs on push to main branch"
 
-on: [push, pull_request]
+on:
+  push:
+    branches:    
+      - main
 
 jobs:
   singlejob:
-    name: "MemCheck compilation and deployment to prod"
+    name: "Only job in this workflow"
 
     runs-on: windows-latest
 
@@ -20,7 +23,4 @@ jobs:
     - name: "Show a secret with an error in the script: a mean to have it shown in the GUI"
       # Here I forget to use quotes
       # This will make the action fail because there is a quote in the secret string
-      run: echo ${{secrets.NOT_TOO_CONFIDENTIAL}} > TmpFile.txt
-
-    - name: "Cat the file"
-      run: cat TmpFile.txt
+      run: echo ${{secrets.NOT_TOO_CONFIDENTIAL}}

@@ -1,0 +1,18 @@
+name: "Demo workflow, runs on PR"
+
+on: [pull_request]
+
+jobs:
+  singlejob:
+    name: "Only job in this workflow"
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: "Show GITHUB_REF"
+      run: echo ${env:GITHUB_REF}
+
+    - name: "Show a secret: it is not readable, we get an empty string"
+      run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}"      
