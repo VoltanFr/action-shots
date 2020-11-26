@@ -24,3 +24,6 @@ jobs:
       # Here I forget to use quotes
       # This will make the action fail because there is a quote in the secret string
       run: echo ${{secrets.NOT_TOO_CONFIDENTIAL}}
+
+    - name: "Show a secret uppercased: it gets redacted"
+      run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}".ToUpper()      
