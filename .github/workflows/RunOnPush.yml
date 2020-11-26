@@ -1,0 +1,20 @@
+name: "Demo workflow, runs on push"
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  singlejob:
+    name: "MemCheck compilation and deployment to prod"
+
+    runs-on: windows-latest
+
+    env:
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: "Show the directory tree"
+      run: tree /F /A
