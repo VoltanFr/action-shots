@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Show GITHUB_REF"
-      run: echo "$GITHUB_CONTEXT"
+      run: echo ${env:GITHUB_REF}
 
   echo_secret_correctly:
     name: "Display a secret and have it hidden"
@@ -19,14 +19,14 @@ jobs:
 
   reveal_secret_uppercase:
     name: "Display a secret uppercase"
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: "The secret is NOT redacted, LEAKED to the log"
       run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}".ToUpper()      
 
   reveal_secret_withbug:
     name: "Display a secret due to a bug"
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: "The secret is NOT redacted, LEAKED to the log"
       # Here I forget to use quotes
