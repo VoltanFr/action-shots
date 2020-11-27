@@ -25,7 +25,7 @@ Particularly, a rogue developer could modify the workflow files to reveal secret
 Sharing jobs between workflows is not possible right now, we have to duplicate the code.
 
 # Shell
-The default shell on Windows is Powershell, while on Linux it is Bash. In my `RunOnPr` workflow I use Powershell on Linux:
+The [default shell](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#using-a-specific-shell) on Windows is Powershell, while on Linux it is Bash. In my `RunOnPr` workflow I use Powershell on Linux:
 >name: "Show GITHUB_REF"  
 >run: echo ${env:GITHUB_REF}  
 >**shell: pwsh**
