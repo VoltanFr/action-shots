@@ -6,24 +6,32 @@ on:
       - master
 
 jobs:
-  singlejob:
-    name: "Only job in this workflow"
-
+  tell_ref:
+    name: "Display GITHUB_REF"
     runs-on: windows-latest
-
     steps:
-    - uses: actions/checkout@v2
-
     - name: "Show GITHUB_REF"
       run: echo ${env:GITHUB_REF}
 
-    - name: "Show a secret correctly: it gets redacted"
-      run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}"      
+  echo_secret_correctly:
+    name: "Display a secret and have it hidden"
+    runs-on: windows-latest
+    steps:
+    - name: "The secret is redacted by GitHub, will not appear"
+      run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}"
 
-    - name: "Show a secret uppercased: **it gets shown**, DANGER"
+  reveal_secret_uppercase:
+    name: "Display a secret uppercase"
+    runs-on: windows-latest
+    steps:
+    - name: "The secret is NOT redacted, LEAKED to the log"
       run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}".ToUpper()      
 
-    - name: "Show a secret with an error in the script: **it gets shown**, DANGER"
+  reveal_secret_withbug:
+    name: "Display a secret due to a bug"
+    runs-on: windows-latest
+    steps:
+    - name: "The secret is NOT redacted, LEAKED to the log"
       # Here I forget to use quotes
       # This will make the action fail because there is a quote in the secret string
       run: echo ${{secrets.NOT_TOO_CONFIDENTIAL}}

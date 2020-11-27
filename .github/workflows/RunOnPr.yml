@@ -21,16 +21,18 @@ jobs:
 
   reveal_secret_uppercase:
     name: "Display a secret uppercase"
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: "The secret is NOT redacted, LEAKED to the log"
       run: echo "${{secrets.NOT_TOO_CONFIDENTIAL}}".ToUpper()      
+      shell: pwsh
 
   reveal_secret_withbug:
     name: "Display a secret due to a bug"
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: "The secret is NOT redacted, LEAKED to the log"
       # Here I forget to use quotes
       # This will make the action fail because there is a quote in the secret string
       run: echo ${{secrets.NOT_TOO_CONFIDENTIAL}}
+      shell: pwsh
