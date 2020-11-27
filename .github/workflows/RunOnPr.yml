@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "Show GITHUB_REF"
-      run: echo ${env:GITHUB_REF}
+      run: echo "$GITHUB_CONTEXT"
 
   echo_secret_correctly:
     name: "Display a secret and have it hidden"
