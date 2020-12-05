@@ -22,10 +22,11 @@ jobs:
           echo "GITHUB_REF: $env:GITHUB_REF"
         shell: pwsh
       - name: "Bash version"
+        # In Bash, using env variables can be done with or without curly braces, and the env: prefix must not be used. The syntax is the same for Win or Linux
         run: |
           echo "Several environment variables"
           echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
-          echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "GITHUB_RUN_ID: ${GITHUB_RUN_ID}"
           echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
           echo "GITHUB_ACTOR: $GITHUB_ACTOR"
           echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
