@@ -23,8 +23,8 @@ jobs:
       - name: "Bash version"
         run: |
           echo "Several environment variables"
-          echo "GITHUB_WORKFLOW: $env:GITHUB_WORKFLOW"
-          echo "GITHUB_RUN_ID: $env:GITHUB_RUN_ID"
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
           echo "GITHUB_RUN_NUMBER: $env:GITHUB_RUN_NUMBER"
           echo "GITHUB_ACTOR: $env:GITHUB_ACTOR"
           echo "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
@@ -33,14 +33,6 @@ jobs:
           echo "GITHUB_SHA: $env:GITHUB_SHA"
           echo "GITHUB_REF: $env:GITHUB_REF"
         shell: bash
-
-  tell_ref:
-    name: "Display GITHUB_REF"
-    runs-on: ubuntu-latest
-    steps:
-    - name: "Show GITHUB_REF"
-      run: echo ${env:GITHUB_REF}
-      shell: pwsh
 
   echo_secret_correctly:
     name: "Display a secret and have it hidden"
