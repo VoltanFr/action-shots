@@ -41,11 +41,12 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: "Cmd version"
+        # In cmd, using env variables can be done with or without curly braces, must be with %% syntax. The syntax is the same for Win or Linux
         run: |
           echo "Several environment variables"
-          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_WORKFLOW: %{GITHUB_WORKFLOW}%"
           echo "GITHUB_RUN_ID: %GITHUB_RUN_ID%"
-          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+          echo "GITHUB_RUN_NUMBER: %GITHUB_RUN_NUMBER"
           echo "GITHUB_ACTOR: $GITHUB_ACTOR"
           echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
           echo "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH"
