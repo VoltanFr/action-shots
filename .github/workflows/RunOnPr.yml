@@ -10,7 +10,8 @@ jobs:
       - name: "Run echos"
         shell: pwsh
         run: |
-        echo "GITHUB_WORKFLOW ${env:GITHUB_WORKFLOW}"
+        echo "GITHUB_WORKFLOW $env:GITHUB_WORKFLOW"
+        
         # echo "GITHUB_RUN_ID ${env:GITHUB_RUN_ID}"
         # echo "GITHUB_RUN_NUMBER ${env:GITHUB_RUN_NUMBER}"
         # echo "GITHUB_ACTOR ${env:GITHUB_ACTOR}"
