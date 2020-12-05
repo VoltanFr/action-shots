@@ -3,7 +3,7 @@ name: "Demo workflow, runs on PR"
 on: [pull_request]
 
 jobs:
-  tell_env_on_linux_with_pwsh:
+  tell_env_on_linux:
     name: "Tell environment variables on Linux"
     runs-on: ubuntu-latest
     steps:
@@ -13,6 +13,7 @@ jobs:
           echo "GITHUB_WORKFLOW: $env:GITHUB_WORKFLOW"
           echo "GITHUB_RUN_ID: $env:GITHUB_RUN_ID"
           echo "GITHUB_RUN_NUMBER: $env:GITHUB_RUN_NUMBER"
+          echo "GITHUB_RUN_NUMBER without env prefix: $GITHUB_RUN_NUMBER"
           echo "GITHUB_ACTOR: $env:GITHUB_ACTOR"
           echo "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
           echo "GITHUB_EVENT_PATH: $env:GITHUB_EVENT_PATH"
@@ -25,14 +26,59 @@ jobs:
           echo "Several environment variables"
           echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
           echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+          echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "GITHUB_SHA: $GITHUB_SHA"
+          echo "GITHUB_REF: $GITHUB_REF"
+        shell: bash
+
+  tell_env_on_windows:
+    name: "Tell environment variables on Windows"
+    runs-on: windows-latest
+    steps:
+      - name: "Powershell version"
+        run: |
+          echo "Several environment variables"
+          echo "GITHUB_WORKFLOW: $env:GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: $env:GITHUB_RUN_ID"
           echo "GITHUB_RUN_NUMBER: $env:GITHUB_RUN_NUMBER"
+          echo "GITHUB_RUN_NUMBER without env prefix: $GITHUB_RUN_NUMBER"
           echo "GITHUB_ACTOR: $env:GITHUB_ACTOR"
           echo "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
           echo "GITHUB_EVENT_PATH: $env:GITHUB_EVENT_PATH"
           echo "GITHUB_WORKSPACE: $env:GITHUB_WORKSPACE"
           echo "GITHUB_SHA: $env:GITHUB_SHA"
           echo "GITHUB_REF: $env:GITHUB_REF"
+        shell: pwsh
+      - name: "Bash version"
+        run: |
+          echo "Several environment variables"
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+          echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "GITHUB_SHA: $GITHUB_SHA"
+          echo "GITHUB_REF: $GITHUB_REF"
         shell: bash
+      - name: "Cmd version"
+        run: |
+          echo "Several environment variables"
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+          echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "GITHUB_SHA: $GITHUB_SHA"
+          echo "GITHUB_REF: $GITHUB_REF"
+        shell: cmd
 
   echo_secret_correctly:
     name: "Display a secret and have it hidden"
