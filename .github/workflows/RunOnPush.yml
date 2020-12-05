@@ -6,12 +6,57 @@ on:
       - master
 
 jobs:
-  tell_ref:
-    name: "Display GITHUB_REF"
+  tell_env_on_linux:
+    name: "Tell environment variables on Linux"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Powershell version"
+        # In Powershell, using env variables can be done with or without curly braces, but the env: prefix is mandatory. The syntax is the same for Win or Linux
+        run: |
+          echo "Several environment variables"
+          echo "GITHUB_WORKFLOW: $env:GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: $env:GITHUB_RUN_ID"
+          echo "GITHUB_RUN_NUMBER: ${env:GITHUB_RUN_NUMBER}"
+          echo "GITHUB_ACTOR: $env:GITHUB_ACTOR"
+          echo "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH: $env:GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE: $env:GITHUB_WORKSPACE"
+          echo "GITHUB_SHA: $env:GITHUB_SHA"
+          echo "GITHUB_REF: $env:GITHUB_REF"
+        shell: pwsh
+      - name: "Bash version"
+        # In Bash, using env variables can be done with or without curly braces, and the env: prefix must not be used. The syntax is the same for Win or Linux
+        run: |
+          echo "Several environment variables"
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: ${GITHUB_RUN_ID}"
+          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+          echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH: $GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          echo "GITHUB_SHA: $GITHUB_SHA"
+          echo "GITHUB_REF: $GITHUB_REF"
+        shell: bash
+
+  tell_env_on_windows:
+    name: "Tell environment variables on Windows cmd"
     runs-on: windows-latest
     steps:
-    - name: "Show GITHUB_REF"
-      run: echo ${env:GITHUB_REF}
+      - name: "Cmd version"
+        # In cmd, using env variables must be without curly braces and %% syntax.
+        run: |
+          echo "Several environment variables"
+          echo "GITHUB_WORKFLOW: %GITHUB_WORKFLOW%"
+          echo "GITHUB_RUN_ID: %GITHUB_RUN_ID%"
+          echo "GITHUB_RUN_NUMBER: %GITHUB_RUN_NUMBER%"
+          echo "GITHUB_ACTOR: %GITHUB_ACTOR%"
+          echo "GITHUB_EVENT_NAME: %GITHUB_EVENT_NAME%"
+          echo "GITHUB_EVENT_PATH: %GITHUB_EVENT_PATH%"
+          echo "GITHUB_WORKSPACE: %GITHUB_WORKSPACE%"
+          echo "GITHUB_SHA: %GITHUB_SHA%"
+          echo "GITHUB_REF: %GITHUB_REF%"
+        shell: cmd
 
   echo_secret_correctly:
     name: "Display a secret and have it hidden"
